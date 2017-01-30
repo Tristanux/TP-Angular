@@ -8,7 +8,7 @@
     <div class="right">
         <div class="date">{{post.creationTime | date}}</div>
         
-        <div class="actions"><a [class.liked]="post.liked"><i class="glyphicon glyphicon-heart"></i></a></div>
+        <div class="actions"><a [class.liked]="post.liked"><i class="glyphicon glyphicon-heart" (click)=like($event)></i></a></div>
     </div>
 </div>
 <div class="body">

@@ -17,9 +17,11 @@ export class PostComponent {
     ) {}
 
     ngOnInit() {
-        
         this.post.content = this.parser.parse(this.post);
-        console.log(this.post.content );
+    }
+
+    like() {
+        this.post.liked = !this.post.liked;
     }
 
 }
