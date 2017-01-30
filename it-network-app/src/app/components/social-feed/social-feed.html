@@ -1,9 +1,11 @@
-<div class="social-app-feed">
+<div class="social-app-feed" *ngFor='let item of items'>
     <!-- Itérer sur les postes-->
-    <!--<post></post>-->
+    <post [post]="item"> 
+    </post>
 </div>
 <div class="social-app-inputs">
     <user-inputs [channelId]="channelId"></user-inputs>
+    
 </div>
 <style>
     :host {

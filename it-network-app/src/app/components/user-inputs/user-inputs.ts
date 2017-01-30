@@ -13,10 +13,13 @@ export class UserInputsComponent {
     message:string;
 
     constructor(
-        private postervice: PostService
+        private postService: PostService
     ) {
     }
 
     send() {
+        
+       this.postService.post(this.channelId, this.message)
+       .then((result) => this.message = "")
     }
 }

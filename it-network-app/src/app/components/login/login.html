@@ -3,13 +3,16 @@
     <div class="form-group" >
         <label for="username">Nom d'utilisateur</label>
         <input type="text" class="form-control" name="username" required [(ngModel)]="model.username" #username="ngModel"  />
+        <span class="errorMessage" [hidden]="username.valid || username.pristine">Nom d'utilisateur requis </span>
     </div>
     <div class="form-group" >
         <label for="password">Mot de passe</label>
         <input type="password" class="form-control" name="password" required [(ngModel)]="model.password" #password="ngModel"  />
+        <span class="errorMessage" [hidden]="password.valid || password.pristine">Mot de passe requis </span>
     </div>
+    <span class="errorMessage">{{error}} </span>
     <div class="form-group">
-        <button type="submit" (click)="submit($event)" [disabled]="loading" class="btn btn-primary">Se connecter</button>
+        <button type="submit" (click)="submit($event)" [disabled]="loading || username.invalid || password.invalid"  class="btn btn-primary">Se connecter</button>
        
         <a [routerLink]="['/register']" class="btn btn-link">S'enregistrer</a>
     </div>
@@ -20,5 +23,9 @@
         display: block;
         background: white;
         padding: 20px;
+    }
+
+    .errorMessage {
+        color : red;
     }
 </style>

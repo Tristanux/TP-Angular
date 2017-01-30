@@ -18,6 +18,5 @@ export class SocialAppComponent implements OnInit {
 
     async ngOnInit() { 
         this.channels = await this.channelService.getAll();
-        console.log(this.channels);
     }
 }

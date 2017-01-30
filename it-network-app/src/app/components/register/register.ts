@@ -11,12 +11,12 @@ import { NgForm } from '@angular/forms';
 export class RegisterComponent {
     @ViewChild(NgForm)
     ngForm: NgForm;
-
+    error: string;
     model = new UserRegistration();
 
     constructor(
         private registrationService: RegistrationService,
-        private router : Router
+        private router: Router
     ) { }
 
     register() {
@@ -24,17 +24,17 @@ export class RegisterComponent {
             return; // Faire des erreurs
         }
         this.registrationService.usernameExists(this.model.userName)
-        .then((result) => {
-            if(result)
-                return; // Faire message d'erreurs
-            else
-                this.registrationService.register(this.model)
-                .then((result) => {
-                    this.router.navigate(['/'])
-                })
-                .catch((error) => {
-                    console.log("Erreur : Erreur serveur, l'username devrait être enregistré")
-                })
-        })
+            .then((result) => {
+                if (result)
+                    return; // Faire message d'erreurs
+                else
+                    this.registrationService.register(this.model)
+                        .then((result) => {
+                            this.router.navigate(['/'])
+                        })
+                        .catch((error) => {
+                            this.error = "Erreur : Erreur serveur, l'username devrait être enregistré";
+                        })
+            })
     }
 }

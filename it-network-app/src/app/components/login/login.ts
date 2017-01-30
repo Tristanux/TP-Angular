@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../services/index';
 })
 export class LoginComponent {
     model = new UserLogin();
+    error : string;
     constructor(
         private authService: AuthenticationService,
         private router: Router
@@ -24,7 +25,7 @@ export class LoginComponent {
         this.login()
             .then((result) => this.router.navigate(['/']))
             .catch((error) => {
-                console.log("Error"); this.router.navigate(["./Channel"])
+                this.error = "Nom d'utilisateur ou mot de passe invalide."
             });
     }
 }
