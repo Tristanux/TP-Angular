@@ -21,7 +21,20 @@ export class RegisterComponent {
 
     register() {
         if (this.ngForm.form.invalid) {
-            return;
+            return; // Faire des erreurs
         }
+        this.registrationService.usernameExists(this.model.userName)
+        .then((result) => {
+            if(result)
+                return; // Faire message d'erreurs
+            else
+                this.registrationService.register(this.model)
+                .then((result) => {
+                    this.router.navigate(['/'])
+                })
+                .catch((error) => {
+                    console.log("Erreur : Erreur serveur, l'username devrair être enregistré")
+                })
+        })
     }
 }
