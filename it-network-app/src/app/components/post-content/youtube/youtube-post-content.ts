@@ -12,8 +12,6 @@ export class YoutubeFeedContentComponent {
     ){}
 
     get url() {
-        console.log(this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.postContent.value.videoId));
-        var tmp = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.postContent.value.videoId);
-        return tmp;
+        return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.postContent.value.videoId);
     }
 }

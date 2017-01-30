@@ -19,6 +19,9 @@
         <picture-post-content *ngIf="post.content.type == 'picture'" [postContent] = "post.content"></picture-post-content>
 
         <youtube-post-content *ngIf="post.content.type == 'youtube'"  [postContent] = "post.content"></youtube-post-content>
+
+        <video-post-content *ngIf="post.content.type == 'video'"  [postContent] = "post.content"></video-post-content>
+
     </div>
 </div>
 <div class="footer">
