@@ -33,7 +33,7 @@ export class RegisterComponent {
                     this.router.navigate(['/'])
                 })
                 .catch((error) => {
-                    console.log("Erreur : Erreur serveur, l'username devrair être enregistré")
+                    console.log("Erreur : Erreur serveur, l'username devrait être enregistré")
                 })
         })
     }
