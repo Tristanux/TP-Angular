@@ -1,5 +1,6 @@
 <div class="header">
     <div class="user-picture">
+
     </div>
     <div class="username">
         {{post.user.username}}
@@ -12,8 +13,12 @@
 </div>
 <div class="body">
     <pre class="message">{{post.message}}</pre>
-    <div *ngIf="post.content">
+    <div *ngIf="post.content"> 
 
+        <!--<picture-post-content [postContent] = "post.content.value.mediaUrl"></picture-post-content>-->
+        <picture-post-content *ngIf="post.content.type == 'picture'" [postContent] = "post.content"></picture-post-content>
+
+        <youtube-post-content *ngIf="post.content.type == 'youtube'"  [postContent] = "post.content"></youtube-post-content>
     </div>
 </div>
 <div class="footer">

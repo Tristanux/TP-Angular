@@ -15,7 +15,9 @@ export class SocialFeedComponent implements OnInit {
         private postService: PostService, 
         private postSocket: PostSocketService,
         private route: ActivatedRoute
-    ) {}
+    ) {
+        this.postSocket.onPost((post:Post) => this.ngOnInit());
+    }
 
     ngOnInit() {
         this.route.params
@@ -27,6 +29,5 @@ export class SocialFeedComponent implements OnInit {
                         this.items = items
                     });
             } );
-    }
-    
+    }    
 }
