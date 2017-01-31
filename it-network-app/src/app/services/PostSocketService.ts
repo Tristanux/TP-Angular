@@ -15,7 +15,6 @@ export class PostSocketService {
     }
 
     onUserConnect(callback: (user: User) => void) {
-        console.log("onUserConnect PostSocketService");
         this.socket.on("user:connect", callback);
     }
 

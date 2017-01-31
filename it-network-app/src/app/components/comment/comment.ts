@@ -17,7 +17,6 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.comment.content = this.parser.parse(this.comment);
-    console.log(this.comment.content);
     if (this.comment.content) {
       const regex = /(http[s]?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gmi;
       const urlContent = regex.exec(this.comment.message);
