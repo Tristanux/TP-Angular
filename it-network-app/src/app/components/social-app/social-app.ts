@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Channel } from 'models';
-import { ChannelService } from 'services';
-import { ActivatedRoute } from '@angular/router';
+import {PostSocketService, ChannelService } from 'services';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'social-app',
@@ -12,11 +12,17 @@ export class SocialAppComponent implements OnInit {
     
     constructor(
         private channelService: ChannelService,
-        private route: ActivatedRoute
+        private postSocket: PostSocketService,
+        private route: ActivatedRoute,
+        private router: Router
     ) {
+        this.postSocket.onNewChannel((channel:Channel) => this.channels.push(channel));
     }
+    
 
     async ngOnInit() { 
         this.channels = await this.channelService.getAll();
+        
+        this.router.navigate(["/","channel",this.channels[0].id]);
     }
 }

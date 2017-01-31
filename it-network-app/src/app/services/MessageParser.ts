@@ -19,17 +19,15 @@ export class MessageParser {
         const youtubeMatche = youtubeRegex.exec(post.message);
         const pictureMatche = pictureRegex.exec(post.message);
         const videoMatche = videoRegex.exec(post.message);
-        if(pictureMatche) {
-            var tmp = new PicturePostContent( pictureMatche[0] );
-           return tmp;
+        if( pictureMatche ) {
+           return new PicturePostContent( pictureMatche[0] );
         }
 
-        if(youtubeMatche){
+        if( youtubeMatche ){
             return new YoutubePostContent( youtubeMatche[2] );
         }
 
-        if(videoMatche){
-            console.log(videoMatche);
+        if( videoMatche ){
             return new VideoPostContent( videoMatche[0] );
         }
 

@@ -8,7 +8,7 @@ import { PostService, PostSocketService, LoggedUser, MessageParser } from 'servi
 })
 export class PostComponent {
     @Input() post: Post;
-
+    urlContent: string;
     constructor(
         private postSocket: PostSocketService,
         private user: LoggedUser,
@@ -18,6 +18,24 @@ export class PostComponent {
 
     ngOnInit() {
         this.post.content = this.parser.parse(this.post);
+        if (this.post.content) {
+            console.log("il est passé par ici");
+            if (this.post.content.type == "youtube") {
+                console.log("vidéo youtube");
+
+                this.urlContent = this.post.content.value.videoId;
+            } else {
+                console.log("vidéo normale ou image");
+
+                this.urlContent = this.post.content.value.mediaUrl;
+            }
+            console.log("url content :");
+            console.log(this.urlContent);
+
+            var tmp = this.post.message.replace(this.urlContent, "");
+            this.post.message = tmp;
+            console.log(tmp);
+        }
     }
 
     like() {
