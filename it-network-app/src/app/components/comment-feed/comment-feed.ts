@@ -6,7 +6,7 @@ import { PostService, PostSocketService } from 'services';
   selector: 'comment-feed',
   templateUrl: 'comment-feed.html'
 })
-export class CommentFeedComponent { 
+export class CommentFeedComponent implements OnInit { 
     @Input() post: Post;
     comments: Comment[] = [];
 
