@@ -21,7 +21,11 @@ export class PostComponent {
     }
 
     like() {
-        this.post.liked = true;
+        if (!this.post.liked) {
+            this.postService.like(this.post)
+                .then(() => this.post.liked = true)
+                .catch((error) => console.error(error));
+        }
     }
 
 }

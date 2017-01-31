@@ -1,7 +1,7 @@
 export { ChannelService } from './ChannelService';
-export { NotificationService } from './NotificationService';
 export { PostService } from './PostService';
 export { PostSocketService } from './PostSocketService';
+export { NotificationService } from './NotificationService';
 export { MessageParser } from './MessageParser';
 export { LoggedUser } from './User';
 export { SocketService } from './SocketService';

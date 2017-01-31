@@ -21,31 +21,6 @@ export class PostService {
             .toPromise();
     }
 
-    getAllCommentsFromPost(post: Post) : Promise<Post[]> {
-        return this.getAll(post.channel.id).then((result) => {
-            return result.filter((element) => {
-                console.log(element);
-                // if(element.post && element.post.id == post.id){
-                //     return true
-                // }
-                // return false;
-                if(element instanceof Comment){
-                    var tmp = element as Comment;
-                    if(tmp.post.id == post.id){
-                        console.log(tmp.post);
-                        return true;
-                    }
-                }
-                return false;
-            });
-        })
-        .catch((error) => {
-            console.error(error); // Log error
-            // return new Post[]
-            // .toPromise();  // Return empty posts array, not blocking the app
-        });
-    }
-
     post<T>(channelId: string, message: string): Promise<any> {
         if (!message) {
             throw new Error("The post message cannot be empty!");

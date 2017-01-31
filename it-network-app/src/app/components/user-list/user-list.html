@@ -1,4 +1,6 @@
-<div class="item"></div>
+<div class="item" *ngFor="let notification of notifications">
+    {{notification}}
+</div>
 <style>
     :host {
         display: block;
@@ -7,5 +9,11 @@
         background: white;
         flex-shrink: 0;
         border-left: 1px solid #d6d6d6;
+    }
+
+    .item{
+        display: block;
+        height: 20px;
+        width: 100%
     }
 </style>
