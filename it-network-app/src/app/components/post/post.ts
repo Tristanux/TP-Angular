@@ -6,9 +6,10 @@ import { PostService, PostSocketService, LoggedUser, MessageParser } from 'servi
     selector: 'post',
     templateUrl: 'post.html'
 })
+
 export class PostComponent {
     @Input() post: Post;
-    urlContent: string;
+    // urlContent: string;
     constructor(
         private postSocket: PostSocketService,
         private user: LoggedUser,
@@ -19,22 +20,13 @@ export class PostComponent {
     ngOnInit() {
         this.post.content = this.parser.parse(this.post);
         if (this.post.content) {
-            console.log("il est passé par ici");
-            if (this.post.content.type == "youtube") {
-                console.log("vidéo youtube");
+            const regex = /(http[s]?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gmi;
+            const urlContent = regex.exec(this.post.message);
 
-                this.urlContent = this.post.content.value.videoId;
-            } else {
-                console.log("vidéo normale ou image");
-
-                this.urlContent = this.post.content.value.mediaUrl;
+            if (urlContent) {
+                var messageReplaced = this.post.message.replace(urlContent[0], "");
+                this.post.message = messageReplaced;
             }
-            console.log("url content :");
-            console.log(this.urlContent);
-
-            var tmp = this.post.message.replace(this.urlContent, "");
-            this.post.message = tmp;
-            console.log(tmp);
         }
     }
 
