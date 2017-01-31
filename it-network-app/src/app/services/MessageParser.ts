@@ -16,6 +16,7 @@ const youtube = "https://youtu.be/";
 export class MessageParser {
 
     parse(post: Post): PostContent<any> {
+
         const youtubeMatche = youtubeRegex.exec(post.message);
         const pictureMatche = pictureRegex.exec(post.message);
         const videoMatche = videoRegex.exec(post.message);
