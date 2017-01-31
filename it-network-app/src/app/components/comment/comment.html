@@ -1,9 +1,19 @@
 <div class="comment-author">
-    {{comment.user.username}}    
+    {{comment.user.username}}
 </div>
 
 <div class="comment-message">
     {{comment.message}}
+</div>
+<div *ngIf="comment.content">
+
+    <!--<picture-post-content [postContent] = "post.content.value.mediaUrl"></picture-post-content>-->
+    <picture-post-content *ngIf="comment.content.type == 'picture'" [postContent]="comment.content"></picture-post-content>
+
+    <youtube-post-content *ngIf="comment.content.type == 'youtube'" [postContent]="comment.content"></youtube-post-content>
+
+    <video-post-content *ngIf="comment.content.type == 'video'" [postContent]="comment.content"></video-post-content>
+
 </div>
 
 
