@@ -12,7 +12,6 @@ export class SocialAppComponent implements OnInit {
     
     constructor(
         private channelService: ChannelService,
-        
         private postSocket: PostSocketService,
         private route: ActivatedRoute,
         private router: Router
@@ -23,6 +22,7 @@ export class SocialAppComponent implements OnInit {
 
     async ngOnInit() { 
         this.channels = await this.channelService.getAll();
+        
         this.router.navigate(["/","channel",this.channels[0].id]);
     }
 }
