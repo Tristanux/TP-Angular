@@ -31,4 +31,4 @@ ChannelPostEdge = __decorate([
     __metadata("design:paramtypes", [])
 ], ChannelPostEdge);
 exports.ChannelPostEdge = ChannelPostEdge;
-//# sourceMappingURL=channel.js.map
+//# sourceMappingURL=Channel.js.map

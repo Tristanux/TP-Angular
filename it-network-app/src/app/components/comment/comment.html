@@ -1,5 +1,5 @@
 <div class="comment-author">
-    {{comment.username}}    
+    {{comment.user.username}}    
 </div>
 
 <div class="comment-message">
@@ -21,8 +21,9 @@
         flex: 1;
         overflow: auto;
         padding: 0 20px;
+        height: 100%;
     }
     .comment-message {
-        height: 150px;
+        height: 100%;
     }
 </style>
