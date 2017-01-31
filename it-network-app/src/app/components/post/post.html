@@ -18,14 +18,15 @@
         <!--<picture-post-content [postContent] = "post.content.value.mediaUrl"></picture-post-content>-->
         <picture-post-content *ngIf="post.content.type == 'picture'" [postContent] = "post.content"></picture-post-content>
 
-        <youtube-post-content *ngIf="post.content.type == 'youtube'"  [postContent] = "post.content"></youtube-post-content>
+        <youtube-post-content *ngIf="post.content.type == 'youtube'" [postContent] = "post.content"></youtube-post-content>
 
-        <video-post-content *ngIf="post.content.type == 'video'"  [postContent] = "post.content"></video-post-content>
+        <video-post-content *ngIf="post.content.type == 'video'" [postContent] = "post.content"></video-post-content>
 
     </div>
 </div>
 <div class="footer">
-    
+    <post-comment [post]="this.post"></post-comment>
+    <comment-feed [post]="this.post"></comment-feed>    
 </div>
 <style>
     :host {

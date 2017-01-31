@@ -1,0 +1,28 @@
+<div class="comment-author">
+    {{comment.username}}    
+</div>
+
+<div class="comment-message">
+    {{comment.message}}
+</div>
+
+
+<style>
+    :host {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+            background: #e9ebee;
+
+    }
+     .comment-author {
+        flex: 1;
+        overflow: auto;
+        padding: 0 20px;
+    }
+    .comment-message {
+        height: 150px;
+    }
+</style>
