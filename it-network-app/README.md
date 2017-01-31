@@ -71,13 +71,13 @@
 9. Retirer les urls des messages parsés pour ne restituer que son contenu
 
 ### Level III
-10. Pouvoir parser plusieurs type de contenus dans un seul poste
+10. Pouvoir parser plusieurs types de contenus dans un seul poste
 11. Remplacer les liens http par des balises <a>...</a>.
 
 ### Commentaires
 
 ### Level I
-1. Pouvoir commenter un postes
+1. Pouvoir commenter un poste
 2. Afficher les commentaires d'un poste 
 3. Afficher l'auteur du commentaires
 4. Insérer les nouveaux commentaires reçues via WebSocket

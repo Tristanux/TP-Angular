@@ -19,8 +19,7 @@ export class PostCommentComponent {
     commentPost(){
         this.postService.comment(this.post, this.comment)
         .then( (result) => {
-            console.log("SUCCESS !");
-            console.log(result);
+            this.comment = "";
         })
         .catch((error) => {
             this.error = "Le commentaire n'a pas fonctionné";
