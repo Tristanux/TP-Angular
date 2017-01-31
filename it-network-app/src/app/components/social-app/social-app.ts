@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Channel } from 'models';
-import { ChannelService } from 'services';
+import {PostSocketService, ChannelService } from 'services';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,10 +12,14 @@ export class SocialAppComponent implements OnInit {
     
     constructor(
         private channelService: ChannelService,
+        
+        private postSocket: PostSocketService,
         private route: ActivatedRoute,
         private router: Router
     ) {
+        this.postSocket.onNewChannel((channel:Channel) => this.channels.push(channel));
     }
+    
 
     async ngOnInit() { 
         this.channels = await this.channelService.getAll();
