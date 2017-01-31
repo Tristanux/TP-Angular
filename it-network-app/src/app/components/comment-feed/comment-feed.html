@@ -1,0 +1,24 @@
+<div class="comments" *ngFor='let comment of comments'>
+    <comment [comment]='comment'></comment>
+</div>
+
+
+<style>
+    :host {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+            background: #e9ebee;
+
+    }
+     .social-app-feed {
+        flex: 1;
+        overflow: auto;
+        padding: 0 20px;
+    }
+    .social-app-inputs {
+        height: 150px;
+    }
+</style>

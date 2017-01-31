@@ -3,6 +3,8 @@ export * from './user-list/user-list';
 export * from './social-feed/social-feed';
 export * from './user-inputs/user-inputs';
 export * from './post-comment/post-comment';
+export * from './comment-feed/comment-feed';
+export * from './comment/comment';
 export * from './post/post';
 export * from './post-content/picture/picture-post-content';
 export * from './post-content/youtube/youtube-post-content';
