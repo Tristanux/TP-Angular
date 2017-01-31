@@ -24,14 +24,27 @@ const constants_1 = require("../constants");
 const graph_1 = require("../database/graph");
 const index_1 = require("./index");
 let PostService = class PostService {
-    constructor(db, userStore, socketService) {
+    constructor(db, userStore, socketService, channelService) {
         this.db = db;
         this.userStore = userStore;
         this.socketService = socketService;
+        this.channelService = channelService;
     }
     find(id) {
-        return this.db.first(`match (p:Post {id: {id}}) return p`, { id })
-            .then(r => r && r.p ? new graph_1.Post(r.p) : null);
+        return this.db.first(`match (u:User)-[]-(p:Post {id: {id}})-[]-(c:Channel) return p, c, u`, { id })
+            .then(r => {
+            if (r && r.p) {
+                let post = new graph_1.Post(r.p);
+                post.channel = new graph_1.Channel(r.c);
+                post.user = new graph_1.User({
+                    id: r.u.id,
+                    username: r.u.username,
+                    pictureUrl: r.u.pictureUrl || ''
+                });
+                return post;
+            }
+            return null;
+        });
     }
     like(id, userId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -69,7 +82,7 @@ let PostService = class PostService {
                 throw new Error("User not exists");
             }
             if (!post) {
-                throw new Error("User not exists");
+                throw new Error("Post not exists");
             }
             return this.db.transaction((db) => __awaiter(this, void 0, void 0, function* () {
                 yield db.createVertex(comment);
@@ -78,9 +91,10 @@ let PostService = class PostService {
                 yield db.createEdge(userComment);
                 yield db.createEdge(postComment);
                 return comment;
-            })).then(e => {
+            })).then((e) => __awaiter(this, void 0, void 0, function* () {
                 let c = comment;
                 c.post = post;
+                c.channel = post.channel;
                 c.user = {
                     id: user.id,
                     username: user.username,
@@ -88,7 +102,7 @@ let PostService = class PostService {
                 };
                 this.socketService.emit("post:comment", c);
                 return e;
-            });
+            }));
         });
     }
 };
@@ -97,8 +111,10 @@ PostService = __decorate([
     __param(0, inversify_1.inject(constants_1.TYPES.IGraphDb)),
     __param(1, inversify_1.inject(constants_1.TYPES.UserStore)),
     __param(2, inversify_1.inject(constants_1.TYPES.SocketService)),
+    __param(3, inversify_1.inject(constants_1.TYPES.ChannelService)),
     __metadata("design:paramtypes", [Object, index_1.UserStore,
-        index_1.SocketService])
+        index_1.SocketService,
+        index_1.ChannelService])
 ], PostService);
 exports.PostService = PostService;
 //# sourceMappingURL=PostService.js.map

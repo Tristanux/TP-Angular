@@ -10,7 +10,6 @@ export class CommentComponent {
     
     constructor(
     ) {
-      console.log(this.comment);
     }
 
 }

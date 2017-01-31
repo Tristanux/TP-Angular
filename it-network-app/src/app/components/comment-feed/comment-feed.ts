@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post, Comment } from 'models';
-import { PostService } from 'services';
+import { PostService, PostSocketService } from 'services';
 
 @Component({
   selector: 'comment-feed',
@@ -11,19 +11,13 @@ export class CommentFeedComponent {
     comments: Comment[] = [];
 
     constructor(
-        private postService: PostService
-    ) {}
+        private postService: PostService,
+        private postSocketService: PostSocketService
+    ) {
+        this.postSocketService.onComment((comment) => this.comments.push(comment));
+    }
 
     ngOnInit(){
-        // this.postService.getAllCommentsFromPost(this.post)
-        // .then((result) => {
-        //     console.log("SUCCESS GETTING COMMENTS");
-        //     console.log(result);
-        //     this.comments = result;
-        // })
-        // .catch((error) => {
-        //     console.error(error);
-        // })
         this.comments = this.post.comments;
     }
 }
