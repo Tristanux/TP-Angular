@@ -1,12 +1,5 @@
-<div *ngFor='let comment of comments'>
-    <div class="comment-author">
-        {{comment.user.username}}
-    </div>
-
-    <div class="comment-message">
-        {{comment.message}}
-    </div>
-</div>
+<div class="comments" *ngFor='let comment of comments'> 
+    <comment [comment]='comment'></comment> 
 
 
 <style>
@@ -19,15 +12,5 @@
         background: #e9ebee;
     }
     
-    .comment-author {
-        flex: 1;
-        overflow: auto;
-        padding: 0 20px;
-        height: 100%;
-        font-weight: bold;
-    }
-    
-    .comment-message {
-        height: 100%;
-    }
+
 </style>
